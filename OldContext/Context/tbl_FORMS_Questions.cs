@@ -1,0 +1,76 @@
+namespace OpenEyeBackendEntities
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class tbl_FORMS_Questions
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_FORMS_Questions()
+        {
+            tbl_FORMS_Answers = new HashSet<tbl_FORMS_Answers>();
+        }
+
+        public int id { get; set; }
+
+        public int surveySectionId { get; set; }
+
+        public int? rang { get; set; }
+
+        [Required(AllowEmptyStrings = true)]
+        [StringLength(100)]
+        public string name { get; set; }
+
+        [Required(AllowEmptyStrings = true)]
+        [StringLength(50)]
+        public string expKey { get; set; }
+
+        [Required(AllowEmptyStrings = true)]
+        [StringLength(50)]
+        public string type { get; set; }
+
+        public bool required { get; set; }
+
+        [StringLength(100)]
+        public string tableRef { get; set; }
+
+        [StringLength(100)]
+        public string tableValueColumn { get; set; }
+
+        [StringLength(100)]
+        public string tableLabelColumn { get; set; }
+
+        [Column("default")]
+        [StringLength(100)]
+        public string @default { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? minValue { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? maxValue { get; set; }
+
+        public int? minChars { get; set; }
+
+        public int? maxChars { get; set; }
+
+        public string dropDownOptions { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime dtCreated { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? dtDeleted { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? dtModified { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_FORMS_Answers> tbl_FORMS_Answers { get; set; }
+
+        public virtual tbl_FORMS_SurveyTemplates_Sections tbl_FORMS_SurveyTemplates_Sections { get; set; }
+    }
+}
