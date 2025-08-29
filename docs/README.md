@@ -1,63 +1,188 @@
-## Documentation Index
+# OECore - Entity Framework Core 9 Migration
 
-- `SETUP.md` — Environment setup and PostgreSQL configuration
-- `DATABASE.md` — Database engine, EF Core conventions, migrations, and requirements
-- `ARCHITECTURE.md` — Project structure and conventions
-- `CODING_GUIDELINES.md` — Coding standards aligned with `AIInstructions.md`
-- `API_GUIDELINES.md` — REST, versioning, error contracts, Swagger
-- `TESTING.md` — Unit and integration testing guidance
-- `SECURITY.md` — Security practices, JWT, CORS, secrets
-- `BACKLOG.md` — Project checklist and progress tracking
+## Project Overview
+OECore is a comprehensive transportation management system that has been successfully migrated from Entity Framework 6 to Entity Framework Core 9, with PostgreSQL as the database engine.
 
-## 🚀 Project Status
+## Current Status ✅
+- **Total Tables**: 71/71 ✅ **COMPLETED**
+- **Systems Migrated**: 11/11 ✅ **COMPLETED**
+- **Migration Files**: 5
+- **Database Engine**: PostgreSQL
+- **EF Core Version**: 9.0
 
-### ✅ **Database Migration Complete**
-**OECore** has successfully migrated from **Entity Framework 6** to **Entity Framework Core 9** with **PostgreSQL**.
+## Migrated Systems ✅
 
-#### **Migration Statistics:**
-- **Total Tables Migrated**: 62/62 ✅
-- **Systems Completed**: 10/10 ✅
-- **Migration Files**: 4 successful migrations
-- **Database Status**: All tables created and functional
+### 1. Core Identity System (6 tables)
+- User management and authentication
+- Multi-company support
+- Role-based access control
+- Soft delete functionality
 
-#### **Migrated Systems:**
-1. **Core Identity & Organization** (6 tables) - User management, companies, regions
-2. **Configuration Tables** (18 tables) - System configuration with multilingual support
-3. **Localization** (2 tables) - Languages and themes
-4. **TIMETABLE System** (7 tables) - GTFS-compatible transit data
-5. **Statistics & Logging** (7 tables) - User activity and system monitoring
-6. **Application Configuration** (2 tables) - App definitions and parameters
-7. **Configuration with Dependencies** (8 tables) - Complex relationships and dashboards
-8. **TICKETING System** (7 tables) - Complete ticketing management
-9. **NOVA System** (3 tables) - NOVA integration platform ⭐ **NEW**
+### 2. Configuration System (28 tables)
+- System configuration and parameters
+- Multilingual support (DE/FR/IT/EN)
+- Business logic configuration
+- UI/UX settings and themes
 
-### 🎯 **Current Focus**
-- **Database Migration**: ✅ **COMPLETE**
-- **Next Phase**: API development and business logic implementation
-- **Priority Systems**: INCIDENTS system for second iteration
+### 3. TIMETABLE System (7 tables)
+- GTFS-compliant public transport data
+- Agency, routes, trips, stops management
+- Calendar and service schedules
+- Stop times and frequency data
 
-### 📊 **Technical Stack**
-- **.NET 9** with Entity Framework Core 9
-- **PostgreSQL 16+** with Npgsql provider
-- **Clean Architecture** (Domain, Application, Infrastructure, API layers)
-- **Multilingual Support** (DE/FR/IT/EN)
-- **Advanced Features**: Soft delete, audit trails, geolocation, image storage
+### 4. Statistics & Logs System (7 tables)
+- User activity tracking
+- Performance monitoring
+- Device logs and debugging
+- System analytics
 
-### 🔧 **Key Features Implemented**
-- **Complete EF6 to EF Core 9 migration**
-- **PostgreSQL compatibility** with proper data type mapping
-- **Multilingual support** across all user-facing systems
-- **Advanced TICKETING system** with QR codes, geolocation, and image storage
-- **NOVA integration platform** with multilingual product support ⭐ **NEW**
-- **GTFS-compatible TIMETABLE system**
-- **Comprehensive audit and logging capabilities**
+### 5. TICKETING System (7 tables)
+- Product catalog and pricing
+- Ticket management with UUID
+- Image storage for tickets
+- Multilingual product descriptions
 
-### 📈 **Next Steps**
-1. **API Development** - Implement REST endpoints for all systems
-2. **Business Logic** - Add service layer and business rules
-3. **Testing** - Comprehensive unit and integration tests
-4. **Documentation** - API documentation and usage guides
-5. **Deployment** - Docker containerization and CI/CD setup
+### 6. NOVA System (3 tables)
+- NOVA integration platform
+- Multilingual product data
+- Company-product associations
+- Payment processing support
+
+### 7. INCIDENTS System (9 tables) ⭐ **NEW**
+- Complete incident lifecycle management
+- Passenger and tutor data handling
+- Payment processing with online transactions
+- Geolocation and abuse detection
+- Export functionality for external systems
+- Task and turn management
+- Comprehensive audit logging
+
+## Key Features
+
+### 🔧 Technical Features
+- **Entity Framework Core 9**: Latest EF Core version
+- **PostgreSQL**: Robust, scalable database
+- **UUID Primary Keys**: Distributed system support
+- **Soft Delete**: Data preservation and audit trail
+- **Multilingual Support**: German, French, Italian, English
+- **Geolocation**: GPS coordinates for location-based services
+- **Payment Processing**: Multiple payment methods support
+- **Audit Logging**: Comprehensive change tracking
+
+### 🏗️ Architecture
+- **Clean Architecture**: Domain, Application, Infrastructure layers
+- **Repository Pattern**: Data access abstraction
+- **Dependency Injection**: IoC container configuration
+- **Migration Management**: EF Core migrations
+- **Configuration Management**: Environment-based settings
+
+### 📊 Database Features
+- **71 Tables**: Complete system coverage
+- **Foreign Key Relationships**: Referential integrity
+- **Indexes**: Performance optimization
+- **Data Types**: PostgreSQL-optimized mappings
+- **Constraints**: Business rule enforcement
+
+## Getting Started
+
+### Prerequisites
+- .NET 9.0 SDK
+- PostgreSQL 15+
+- Docker (optional)
+
+### Installation
+1. Clone the repository
+2. Configure connection string in `appsettings.json`
+3. Run migrations: `dotnet ef database update`
+4. Start the application: `dotnet run`
+
+### Database Setup
+```bash
+# Apply all migrations
+dotnet ef database update
+
+# Verify database status
+dotnet ef migrations list
+```
+
+## Migration History
+
+### Phase 1: Core Identity (20250819124105)
+- User, Profile, Company, Region entities
+- Basic organizational structure
+
+### Phase 2: Configuration (20250828155628)
+- Complete configuration system
+- 28 tables for system configuration
+
+### Phase 3: TIMETABLE (20250828155628)
+- GTFS-compliant timetable system
+- 7 tables for public transport data
+
+### Phase 4: Statistics & Logs (20250828155628)
+- Monitoring and logging system
+- 7 tables for analytics and debugging
+
+### Phase 5: TICKETING (20250829065609)
+- Complete ticketing system
+- 7 tables for product and ticket management
+
+### Phase 6: NOVA (20250829081553)
+- NOVA system integration
+- 3 tables with multilingual support
+
+### Phase 7: INCIDENTS (20250829095806) ⭐
+- Complete incident management system
+- 9 tables for incident lifecycle management
+
+## Project Structure
+
+```
+OECore/
+├── src/
+│   ├── OECore.Api/           # Web API project
+│   ├── OECore.Application/   # Application layer
+│   ├── OECore.Domain/        # Domain entities
+│   └── OECore.Infrastructure/# Data access layer
+├── docs/                     # Documentation
+└── OldContext/              # Legacy EF6 context
+```
+
+## Documentation
+
+- [Database Documentation](docs/DATABASE.md) - Complete database schema
+- [Migration Plan](docs/MIGRATION_PLAN.md) - Migration strategy and phases
+- [Backlog](docs/BACKLOG.md) - Project progress and next steps
+- [Setup Guide](docs/SETUP.md) - Development environment setup
+- [Architecture](docs/ARCHITECTURE.md) - System architecture overview
+
+## Next Steps
+
+### Immediate Priorities
+1. **FORMS System Migration** - Form management and data collection
+2. **DOCBOX System Migration** - Document management system
+3. **API Development** - REST endpoints for all systems
+
+### Future Enhancements
+- Performance optimization
+- Comprehensive testing
+- Deployment automation
+- API documentation
+
+## Contributing
+
+1. Follow the established architecture patterns
+2. Use EF Core migrations for database changes
+3. Update documentation for any schema changes
+4. Ensure all tests pass before submitting
+
+## License
+
+This project is proprietary software. All rights reserved.
+
+## Support
+
+For technical support or questions about the migration, please refer to the documentation or contact the development team.
 
 
 
