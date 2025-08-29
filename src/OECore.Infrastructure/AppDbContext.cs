@@ -71,6 +71,15 @@ public class AppDbContext : DbContext
     public DbSet<Dashboard> Dashboards => Set<Dashboard>();
     public DbSet<Widget> Widgets => Set<Widget>();
 
+    // Ticketing entities
+    public DbSet<TicketingCategory> TicketingCategories => Set<TicketingCategory>();
+    public DbSet<TicketingClass> TicketingClasses => Set<TicketingClass>();
+    public DbSet<TicketingProduct> TicketingProducts => Set<TicketingProduct>();
+    public DbSet<TicketingProductPrice> TicketingProductPrices => Set<TicketingProductPrice>();
+    public DbSet<TicketingTicket> TicketingTickets => Set<TicketingTicket>();
+    public DbSet<TicketingTicketLine> TicketingTicketLines => Set<TicketingTicketLine>();
+    public DbSet<TicketingTicketImage> TicketingTicketImages => Set<TicketingTicketImage>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
