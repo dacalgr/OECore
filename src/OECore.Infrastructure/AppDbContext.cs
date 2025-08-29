@@ -80,6 +80,11 @@ public class AppDbContext : DbContext
     public DbSet<TicketingTicketLine> TicketingTicketLines => Set<TicketingTicketLine>();
     public DbSet<TicketingTicketImage> TicketingTicketImages => Set<TicketingTicketImage>();
 
+    // NOVA entities
+    public DbSet<NovaTicket> NovaTickets => Set<NovaTicket>();
+    public DbSet<NovaProductData> NovaProductData => Set<NovaProductData>();
+    public DbSet<NovaCompanyProductData> NovaCompanyProductData => Set<NovaCompanyProductData>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
