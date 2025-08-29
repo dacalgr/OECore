@@ -28,7 +28,7 @@
 - Location: `src/OECore.Infrastructure/Migrations`
 - Create: `dotnet ef migrations add <Name> --startup-project ../OECore.Api`
 - Apply: `dotnet ef database update --startup-project ../OECore.Api`
-- Current Migration: `CompleteOECoreMigration` (includes all 41 tables)
+- Current Migration: `AddTicketingSystem` (includes all 54 tables)
 
 ## Database Schema
 
@@ -114,17 +114,28 @@
 | `tbl_CONFIG_Dashboards` | User dashboards | FK to `tbl_CONFIG_Themes`, M:N with users |
 | `tbl_CONFIG_Widgets` | Dashboard widgets | FK to `tbl_CONFIG_Applications`, multilingual |
 
+### TICKETING System (7 tables) - Complete Ticketing Management
+| Table | Description | Key Features |
+|-------|-------------|-------------|
+| `tbl_TICKETING_Categories` | Product categories | Multilingual (DE/FR/IT), ranking system |
+| `tbl_TICKETING_Classes` | Product classes (1st, 2nd, etc.) | Multilingual (EN/DE/FR/IT) |
+| `tbl_TICKETING_Products` | Complete product definitions | Extensive multilingual support, QR codes, soft delete |
+| `tbl_TICKETING_ProductPrices` | Product pricing (composite key) | Price/half-price, FQ codes, class-based pricing |
+| `tbl_TICKETING_Tickets` | Main ticket records | UUID primary key, geolocation, payment tracking |
+| `tbl_TICKETING_TicketsLines` | Ticket line items | Billing details, currency, receipt data |
+| `tbl_TICKETING_TicketsImages` | Ticket images/receipts | Image storage, receipt identification |
+
 ### Key Features
 
 #### Multilingual Support
 - **4 Languages**: English (EN), German (DE), French (FR), Italian (IT)
 - **Pattern**: `text_en`, `text_de`, `text_fr`, `text_it` or `nameEN`, `nameDE`, etc.
-- **Coverage**: Most user-facing configuration tables
+- **Coverage**: Most user-facing configuration tables and TICKETING system
 
 #### Soft Delete Pattern
 - **Field**: `dtDeleted` (nullable timestamp)
 - **Usage**: Logical deletion without data loss
-- **Tables**: Most configuration tables support soft delete
+- **Tables**: Most configuration tables and TICKETING products support soft delete
 
 #### Audit Trail
 - **Creation**: `dtCreated`, `dtModified`
@@ -135,24 +146,29 @@
 - **Coordinates**: `lat`/`lng` fields (real type)
 - **Swiss DIDOK**: Station identification system
 - **Postal Data**: ZIP codes, cities, countries
+- **Ticket Geolocation**: Purchase location tracking in TICKETING system
 
 #### Performance Considerations
 - **Indexes**: Created for all foreign keys
-- **Composite Keys**: Used where appropriate (`tbl_STATISTICS_devicesData`)
+- **Composite Keys**: Used where appropriate (`tbl_STATISTICS_devicesData`, `tbl_TICKETING_ProductPrices`)
 - **String Keys**: Some tables use string primary keys (`tbl_TIMETABLE_*`)
+- **UUID Keys**: TICKETING tickets use GUID for distributed systems
 
 ### Data Types Used
 - **Identifiers**: `bigint` (users, companies) or `integer` (config tables)
+- **UUID**: `uuid` for TICKETING tickets and distributed tracking
 - **Text**: `text` (unlimited) or `character varying(n)` (limited)
 - **Timestamps**: `timestamp` (local) or `timestamp with time zone` (UTC)
 - **Coordinates**: `real` for lat/lng, `numeric` for precise values
 - **Boolean**: `boolean`
-- **UUID**: Used for tracking (`itemGUID`)
+- **Composite Keys**: Multiple columns for complex relationships
 
 ### Migration Status
-- **Total Tables**: 47 (including core identity tables)
-- **Legacy Tables Migrated**: 41
-- **Migration File**: `20250828153529_CompleteOECoreMigration`
+- **Total Tables**: 54 (including core identity tables)
+- **Legacy Tables Migrated**: 48
+- **Migration Files**: 
+  - `20250828153529_CompleteOECoreMigration` (47 tables)
+  - `20250829065609_AddTicketingSystem` (7 TICKETING tables)
 - **Status**: ✅ Complete
 
 ### Performance & Operations
@@ -166,5 +182,6 @@
 - **Type Mapping**: `datetime2` → `timestamp` for PostgreSQL compatibility
 - **Relationship Patterns**: `OnDelete(DeleteBehavior.Restrict)` for data integrity
 - **Configuration**: Fluent API used for all entity configurations
+- **TICKETING System**: Complete multilingual support with advanced features (QR codes, geolocation, image storage)
 
 
