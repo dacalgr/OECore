@@ -105,6 +105,12 @@ public class AppDbContext : DbContext
     public DbSet<SurveyTemplateCompany> SurveyTemplateCompanies => Set<SurveyTemplateCompany>();
     public DbSet<SurveyTemplateSection> SurveyTemplateSections => Set<SurveyTemplateSection>();
 
+    // DOCBOX entities
+    public DbSet<DocboxDocument> DocboxDocuments => Set<DocboxDocument>();
+    public DbSet<DocboxFolder> DocboxFolders => Set<DocboxFolder>();
+    public DbSet<DocboxDocumentUserRead> DocboxDocumentUserReads => Set<DocboxDocumentUserRead>();
+    public DbSet<DocboxFavorite> DocboxFavorites => Set<DocboxFavorite>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
