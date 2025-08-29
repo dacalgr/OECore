@@ -4,8 +4,8 @@
 This document describes the database structure for the OECore application, which has been migrated from Entity Framework 6 to Entity Framework Core 9.
 
 ## Current Status
-- **Total Tables**: 71
-- **Current Migration**: `20250829095806_AddIncidentsSystem`
+- **Total Tables**: 78
+- **Current Migration**: `20250829104823_AddFormsSystem`
 - **Database Engine**: PostgreSQL
 - **EF Core Version**: 9.0
 
@@ -62,6 +62,15 @@ This document describes the database structure for the OECore application, which
 - **Turns**: `tblTurn` - Work shift management
 - **Task Types**: `tblTaskType`, `tblTaskType1`, `tblTaskType3` - Task categorization
 - **Features**: Complete incident lifecycle, abuse detection, payment processing, geolocation, export functionality
+
+### 8. FORMS System (7 tables) ⭐ **NEW**
+- **Templates**: `tbl_FORMS_SurveyTemplates` - Reusable survey templates
+- **Surveys**: `tbl_FORMS_Surveys` - Survey instances completed by users
+- **Sections**: `tbl_FORMS_Sections` - Form organization and structure
+- **Questions**: `tbl_FORMS_Questions` - Question definitions with types and validations
+- **Answers**: `tbl_FORMS_Answers` - User responses to questions
+- **Relations**: `tbl_FORMS_SurveyTemplates_Companies`, `tbl_FORMS_SurveyTemplates_Sections` - Template associations
+- **Features**: Multi-tenant surveys, question types (text, numeric, dropdown), validations, audit logging
 
 ## Key Features
 
@@ -124,6 +133,10 @@ This document describes the database structure for the OECore application, which
 - Complete incident management system
 - 9 tables for incident lifecycle management
 
+### Phase 8: FORMS (20250829104823) ⭐ **NEW**
+- Complete form and survey management system
+- 7 tables for survey templates, questions, and responses
+
 ## Database Schema
 
 ### Naming Conventions
@@ -143,7 +156,6 @@ This document describes the database structure for the OECore application, which
 - **Performance**: Additional indexes on frequently queried fields
 
 ## Next Steps
-- **FORMS System**: Form management and data collection
 - **DOCBOX System**: Document management and storage
 - **API Development**: REST endpoints for all systems
 - **Performance Optimization**: Query optimization and indexing

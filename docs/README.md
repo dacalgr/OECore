@@ -4,9 +4,9 @@
 OECore is a comprehensive transportation management system that has been successfully migrated from Entity Framework 6 to Entity Framework Core 9, with PostgreSQL as the database engine.
 
 ## Current Status ✅
-- **Total Tables**: 71/71 ✅ **COMPLETED**
-- **Systems Migrated**: 11/11 ✅ **COMPLETED**
-- **Migration Files**: 5
+- **Total Tables**: 78/78 ✅ **COMPLETED**
+- **Systems Migrated**: 12/12 ✅ **COMPLETED**
+- **Migration Files**: 6
 - **Database Engine**: PostgreSQL
 - **EF Core Version**: 9.0
 
@@ -48,7 +48,7 @@ OECore is a comprehensive transportation management system that has been success
 - Company-product associations
 - Payment processing support
 
-### 7. INCIDENTS System (9 tables) ⭐ **NEW**
+### 7. INCIDENTS System (9 tables)
 - Complete incident lifecycle management
 - Passenger and tutor data handling
 - Payment processing with online transactions
@@ -56,6 +56,15 @@ OECore is a comprehensive transportation management system that has been success
 - Export functionality for external systems
 - Task and turn management
 - Comprehensive audit logging
+
+### 8. FORMS System (7 tables) ⭐ **NEW**
+- Complete form and survey management
+- Reusable survey templates
+- Multi-tenant survey support
+- Question types (text, numeric, dropdown)
+- Validation rules and constraints
+- User response tracking
+- Audit logging and data export
 
 ## Key Features
 

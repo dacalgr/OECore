@@ -96,6 +96,15 @@ public class AppDbContext : DbContext
     public DbSet<TaskType1> TaskType1 => Set<TaskType1>();
     public DbSet<TaskType3> TaskType3 => Set<TaskType3>();
 
+    // FORMS entities
+    public DbSet<SurveyTemplate> SurveyTemplates => Set<SurveyTemplate>();
+    public DbSet<Survey> Surveys => Set<Survey>();
+    public DbSet<FormSection> FormSections => Set<FormSection>();
+    public DbSet<FormQuestion> FormQuestions => Set<FormQuestion>();
+    public DbSet<FormAnswer> FormAnswers => Set<FormAnswer>();
+    public DbSet<SurveyTemplateCompany> SurveyTemplateCompanies => Set<SurveyTemplateCompany>();
+    public DbSet<SurveyTemplateSection> SurveyTemplateSections => Set<SurveyTemplateSection>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

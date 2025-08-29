@@ -1,0 +1,40 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using OECore.Domain.Entities;
+
+namespace OECore.Infrastructure.Configurations;
+
+public class FormSectionConfiguration : IEntityTypeConfiguration<FormSection>
+{
+    public void Configure(EntityTypeBuilder<FormSection> builder)
+    {
+        builder.ToTable("tbl_FORMS_Sections");
+        builder.HasKey(e => e.Id);
+        
+        builder.Property(e => e.Name)
+            .HasColumnName("name")
+            .HasMaxLength(100)
+            .IsRequired();
+        
+        builder.Property(e => e.Required)
+            .HasColumnName("required");
+        
+        builder.Property(e => e.DtCreated)
+            .HasColumnName("dtCreated")
+            .HasColumnType("timestamp");
+        
+        builder.Property(e => e.DtDeleted)
+            .HasColumnName("dtDeleted")
+            .HasColumnType("timestamp");
+        
+        builder.Property(e => e.DtModified)
+            .HasColumnName("dtModified")
+            .HasColumnType("timestamp");
+        
+        // Relationships
+        builder.HasMany(e => e.SurveyTemplateSections)
+            .WithOne(e => e.FormSection)
+            .HasForeignKey(e => e.SectionId)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
+}
