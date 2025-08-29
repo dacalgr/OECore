@@ -85,6 +85,17 @@ public class AppDbContext : DbContext
     public DbSet<NovaProductData> NovaProductData => Set<NovaProductData>();
     public DbSet<NovaCompanyProductData> NovaCompanyProductData => Set<NovaCompanyProductData>();
 
+    // INCIDENTS entities
+    public DbSet<Incident> Incidents => Set<Incident>();
+    public DbSet<IncidentImage> IncidentImages => Set<IncidentImage>();
+    public DbSet<IncidentExportReport> IncidentExportReports => Set<IncidentExportReport>();
+    public DbSet<IncidentsLog> IncidentsLogs => Set<IncidentsLog>();
+    public DbSet<IncidentTask> IncidentTasks => Set<IncidentTask>();
+    public DbSet<Turn> Turns => Set<Turn>();
+    public DbSet<TaskType> TaskTypes => Set<TaskType>();
+    public DbSet<TaskType1> TaskType1 => Set<TaskType1>();
+    public DbSet<TaskType3> TaskType3 => Set<TaskType3>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
