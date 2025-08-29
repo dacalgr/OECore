@@ -28,7 +28,7 @@
 - Location: `src/OECore.Infrastructure/Migrations`
 - Create: `dotnet ef migrations add <Name> --startup-project ../OECore.Api`
 - Apply: `dotnet ef database update --startup-project ../OECore.Api`
-- Current Migration: `AddTicketingSystem` (includes all 54 tables)
+- Current Migration: `UpdateNovaSystem` (includes all 62 tables)
 
 ## Database Schema
 
@@ -125,17 +125,24 @@
 | `tbl_TICKETING_TicketsLines` | Ticket line items | Billing details, currency, receipt data |
 | `tbl_TICKETING_TicketsImages` | Ticket images/receipts | Image storage, receipt identification |
 
+### NOVA System (3 tables) - NOVA Integration Platform ⭐ **NEW**
+| Table | Description | Key Features |
+|-------|-------------|-------------|
+| `tbl_NOVA_Tickets` | NOVA ticket records | UUID primary key, geolocation, payment processing |
+| `tbl_NOVA_ProductData` | NOVA product definitions | Multilingual support (DE/FR/IT/EN) |
+| `tbl_CONFIG_Companies_NOVA_ProductData` | Company-Product associations | M:N relationship for NOVA products |
+
 ### Key Features
 
 #### Multilingual Support
 - **4 Languages**: English (EN), German (DE), French (FR), Italian (IT)
 - **Pattern**: `text_en`, `text_de`, `text_fr`, `text_it` or `nameEN`, `nameDE`, etc.
-- **Coverage**: Most user-facing configuration tables and TICKETING system
+- **Coverage**: Most user-facing configuration tables, TICKETING and NOVA systems
 
 #### Soft Delete Pattern
 - **Field**: `dtDeleted` (nullable timestamp)
 - **Usage**: Logical deletion without data loss
-- **Tables**: Most configuration tables and TICKETING products support soft delete
+- **Tables**: Most configuration tables, TICKETING products, and NOVA tickets support soft delete
 
 #### Audit Trail
 - **Creation**: `dtCreated`, `dtModified`
@@ -146,17 +153,17 @@
 - **Coordinates**: `lat`/`lng` fields (real type)
 - **Swiss DIDOK**: Station identification system
 - **Postal Data**: ZIP codes, cities, countries
-- **Ticket Geolocation**: Purchase location tracking in TICKETING system
+- **Ticket Geolocation**: Purchase location tracking in TICKETING and NOVA systems
 
 #### Performance Considerations
 - **Indexes**: Created for all foreign keys
 - **Composite Keys**: Used where appropriate (`tbl_STATISTICS_devicesData`, `tbl_TICKETING_ProductPrices`)
 - **String Keys**: Some tables use string primary keys (`tbl_TIMETABLE_*`)
-- **UUID Keys**: TICKETING tickets use GUID for distributed systems
+- **UUID Keys**: TICKETING and NOVA tickets use GUID for distributed systems
 
 ### Data Types Used
 - **Identifiers**: `bigint` (users, companies) or `integer` (config tables)
-- **UUID**: `uuid` for TICKETING tickets and distributed tracking
+- **UUID**: `uuid` for TICKETING and NOVA tickets and distributed tracking
 - **Text**: `text` (unlimited) or `character varying(n)` (limited)
 - **Timestamps**: `timestamp` (local) or `timestamp with time zone` (UTC)
 - **Coordinates**: `real` for lat/lng, `numeric` for precise values
@@ -164,11 +171,13 @@
 - **Composite Keys**: Multiple columns for complex relationships
 
 ### Migration Status
-- **Total Tables**: 54 (including core identity tables)
-- **Legacy Tables Migrated**: 48
+- **Total Tables**: 62 (including core identity tables)
+- **Legacy Tables Migrated**: 56
 - **Migration Files**: 
   - `20250828153529_CompleteOECoreMigration` (47 tables)
   - `20250829065609_AddTicketingSystem` (7 TICKETING tables)
+  - `20250829081553_AddNovaSystem` (3 NOVA tables)
+  - `20250829082550_UpdateNovaSystem` (NOVA system updates)
 - **Status**: ✅ Complete
 
 ### Performance & Operations
@@ -183,5 +192,6 @@
 - **Relationship Patterns**: `OnDelete(DeleteBehavior.Restrict)` for data integrity
 - **Configuration**: Fluent API used for all entity configurations
 - **TICKETING System**: Complete multilingual support with advanced features (QR codes, geolocation, image storage)
+- **NOVA System**: Integration platform with multilingual product support and company associations
 
 
