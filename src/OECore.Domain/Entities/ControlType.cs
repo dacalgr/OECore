@@ -6,17 +6,16 @@ public class ControlType
 {
     public int Id { get; set; }
     
-    public string? TextIt { get; set; }
+    [StringLength(4000)]
+    public string? NameDe { get; set; }
     
-    public string? TextDe { get; set; }
+    [StringLength(4000)]
+    public string? NameFr { get; set; }
     
-    public string? TextFr { get; set; }
+    [StringLength(4000)]
+    public string? NameIt { get; set; }
     
-    public int ControlTypeId { get; set; }
-    
-    public int? Rank { get; set; }
-    
+    public DateTime? DtCreated { get; set; }
+    public DateTime? DtModified { get; set; }
     public DateTime? DtDeleted { get; set; }
-    
-    public DateTime? DtLastSqliteImport { get; set; }
 }

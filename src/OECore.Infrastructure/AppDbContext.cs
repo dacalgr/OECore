@@ -111,6 +111,73 @@ public class AppDbContext : DbContext
     public DbSet<DocboxDocumentUserRead> DocboxDocumentUserReads => Set<DocboxDocumentUserRead>();
     public DbSet<DocboxFavorite> DocboxFavorites => Set<DocboxFavorite>();
 
+    // BACKEND entities
+    public DbSet<BackendColumnsConfiguration> BackendColumnsConfigurations => Set<BackendColumnsConfiguration>();
+    public DbSet<BackendFieldsConfiguration> BackendFieldsConfigurations => Set<BackendFieldsConfiguration>();
+
+    // BACKUP entities
+    public DbSet<BackupBill> BackupBills => Set<BackupBill>();
+    public DbSet<BackupCompany> BackupCompanies => Set<BackupCompany>();
+
+    // BILLING entities
+    public DbSet<Bill> Bills => Set<Bill>();
+    public DbSet<BillLine> BillLines => Set<BillLine>();
+    public DbSet<BillLinesLog> BillLinesLogs => Set<BillLinesLog>();
+    public DbSet<BalanceHistory> BalanceHistories => Set<BalanceHistory>();
+    public DbSet<CashCheckHistory> CashCheckHistories => Set<CashCheckHistory>();
+    public DbSet<PaymentMode> PaymentModes => Set<PaymentMode>();
+    public DbSet<PayrexxPayment> PayrexxPayments => Set<PayrexxPayment>();
+    public DbSet<Audit> Audits => Set<Audit>();
+
+    // BLACKLIST entities
+    public DbSet<Blacklist> Blacklists => Set<Blacklist>();
+    public DbSet<BlackListFile> BlackListFiles => Set<BlackListFile>();
+    public DbSet<BlacklistStaging> BlacklistStagings => Set<BlacklistStaging>();
+
+    // MONITOR entities
+    public DbSet<MonitorData> MonitorData => Set<MonitorData>();
+
+    // DISPO entities
+    public DbSet<DispoLineStats> DispoLineStats => Set<DispoLineStats>();
+
+    // CONTACTS entities
+    public DbSet<Contact> Contacts => Set<Contact>();
+    public DbSet<DeviceContact> DeviceContacts => Set<DeviceContact>();
+
+    // MAILING entities
+    public DbSet<Mailing> Mailings => Set<Mailing>();
+
+    // MULTILINGUAL entities
+    public DbSet<MultilingualText> MultilingualTexts => Set<MultilingualText>();
+
+    // EXPORT entities
+    public DbSet<ExportConfiguration> ExportConfigurations => Set<ExportConfiguration>();
+
+    // LOGS entities
+    public DbSet<Log> Logs => Set<Log>();
+
+    // TURNS entities
+    public DbSet<TurnsLog> TurnsLogs => Set<TurnsLog>();
+
+    // DOCUMENTS entities
+    public DbSet<AgreementDocument> AgreementDocuments => Set<AgreementDocument>();
+
+    // PAYMENTS entities
+    public DbSet<OnlinePaymentsStatus> OnlinePaymentsStatuses => Set<OnlinePaymentsStatus>();
+
+    // SPECIAL PASSENGERS entities
+    public DbSet<SpecialPassenger> SpecialPassengers => Set<SpecialPassenger>();
+    public DbSet<SpecialComment> SpecialComments => Set<SpecialComment>();
+
+    // CARD TYPE entities
+    public DbSet<CardType> CardTypes => Set<CardType>();
+
+    // COMPANY MAPPING entities
+    public DbSet<CompanyMapping> CompanyMappings => Set<CompanyMapping>();
+
+    // CONFIGURATION DATA entities
+    public DbSet<ConfigurationData> ConfigurationDatas => Set<ConfigurationData>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
